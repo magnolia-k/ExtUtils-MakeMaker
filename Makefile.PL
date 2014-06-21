@@ -156,6 +156,28 @@ SPACE_WARN
 
 # Display warnings about the environment.
 sub check_environment {
+    
+    # for perl 5.6
+    if ( $] <= 5.008000 ) {
+        print "\n";
+        print '*' x 70 . "\n";
+        print <<PERL_5_6;
+*** CAUTION
+***  ExtUtils::MakeMaker (EUMM) will drop support for perl 5.6
+***  at next mejaor release ( probably EUMM ver 8.00 ) for the
+***  support of unicode improved.
+***
+***  EUMM ver. 8.00 will support perl 5.8.1 or above.
+***  Please consider upgrading your perl5 install.
+***
+***  Moreover EUMM ver. 7.xx will continue to support perl 5.6.
+PERL_5_6
+        print '*' x 70 . "\n";
+        print "\n";
+    }
+
+
+    # for VMS
     if ( $Is_VMS && $ENV{bin} ) {
         print <<BIN_WARN;
 
